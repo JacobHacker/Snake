@@ -1,0 +1,7 @@
+target = 'snake'
+source = ['main.cpp', 'snake.cpp', 'tile.cpp', 'food.cpp', 'map.cpp', 'spriteSheet.cpp']
+libs = ['sfml-system', 'sfml-graphics', 'sfml-window']
+
+
+Program(target, source, LIBS = libs)
+
