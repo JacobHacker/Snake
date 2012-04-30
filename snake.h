@@ -13,10 +13,10 @@ class Snake{
 	void setSprite(sf::Sprite sprite);
 	sf::Sprite getSprite();
 
-	void render();
-	void getEvents();
+	void pollEvent(sf::Event *event);
 	void logic();
-	
+	void render(sf::RenderWindow *app);
+
 	private:
 	int m_direction;
 	sf::Sprite m_sprite;
