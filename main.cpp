@@ -8,21 +8,20 @@
 #include "tile.h"
 #include "snake.h"
 
+#define DEBUG_WINDOW = true;
+
 int main(){
 	sf::RenderWindow App(sf::VideoMode(800, 600, 32), "Snake");
+	App.SetFramerateLimit(30);
 	
-	sf::Image mapTiles;
-	if( !mapTiles.LoadFromFile("spritesheet.png") ){
-		//exit
+	sf::Image snakeImage;
+	if( !snakeImage.LoadFromFile("img/Aqua.png") ){
+		std::cout << "Failed to load snake image file\n";
 	}
-	
-	
-	sf::Sprite spr(mapTiles);
-	Map map( spr );
-	map.openFile("map/level1.map");
 	
 	// Mighty snake warrior
 	Snake snakeWarrior;
+	snakeWarrior.setSprite(sf::Sprite(snakeImage), 10);
 	
 	while( App.IsOpened() ){
 		//event polling
@@ -31,6 +30,7 @@ int main(){
 			if(event.Type == sf::Event::Closed){
 				App.Close();
 			}
+			
 			snakeWarrior.pollEvent(&event);
 		}
 		
@@ -38,8 +38,8 @@ int main(){
 		snakeWarrior.logic();
 		
 		//render
-		App.Clear( sf::Color(0, 0, 0) );
-		map.render(&App);
+		App.Clear( sf::Color(255, 255, 255) );
+		//map.render(&App);
 		snakeWarrior.render(&App);
 		
 		App.Display();
