@@ -12,23 +12,25 @@
 
 int main(){
 	sf::RenderWindow App(sf::VideoMode(800, 600, 32), "Snake");
-	App.SetFramerateLimit(30);
+	App.setFramerateLimit(30);
 	
-	sf::Image snakeImage;
-	if( !snakeImage.LoadFromFile("img/Aqua.png") ){
+	sf::Texture snakeTex;
+	if( !snakeTex.loadFromFile("img/Aqua.png") ){
 		std::cout << "Failed to load snake image file\n";
 	}
 	
 	// Mighty snake warrior
+	sf::Sprite snakeSprite(snakeTex);
+
 	Snake snakeWarrior;
-	snakeWarrior.setSprite(sf::Sprite(snakeImage), 10);
+	snakeWarrior.setSprite(snakeSprite, 10);
 	
-	while( App.IsOpened() ){
+	while( App.isOpen() ){
 		//event polling
 		sf::Event event;
-		while( App.GetEvent(event) ){
-			if(event.Type == sf::Event::Closed){
-				App.Close();
+		while( App.pollEvent(event) ){
+			if(event.type == sf::Event::Closed){
+				App.close();
 			}
 			
 			snakeWarrior.pollEvent(&event);
@@ -38,11 +40,11 @@ int main(){
 		snakeWarrior.logic();
 		
 		//render
-		App.Clear( sf::Color(255, 255, 255) );
-		//map.render(&App);
+		App.clear( sf::Color(255, 255, 255) );
+		map.render(&App);
 		snakeWarrior.render(&App);
 		
-		App.Display();
+		App.display();
 	}
 	return 0;
 }

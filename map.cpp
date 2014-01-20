@@ -104,7 +104,7 @@ bool Map::openFile( std::string filename ){
 
 void Map::render(sf::RenderWindow *App){
 	for(int i=0; i<tiles.size(); ++i){
-		App->Draw(tiles[i].getSprite());
+		App->draw(tiles[i].getSprite());
 	}
 	
 

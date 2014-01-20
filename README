@@ -1,1 +1,7 @@
-Basic Snake game.
+Basic snake clone.
+
+Requirements
+------------
+* SFML 2.1
+
+

@@ -14,6 +14,6 @@ sf::Sprite Tile::getSprite(){
 }
 
 void Tile::setPosition(float x, float y){
-	m_sprite.SetPosition(x, y);
+	m_sprite.setPosition(x, y);
 }
 
