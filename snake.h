@@ -9,15 +9,14 @@ const int DIRECT_DOWN = 1;
 const int DIRECT_LEFT = 2;
 const int DIRECT_RIGHT = 3;
 
-
 class Snake{
 	public:
-	void setSprite(sf::Sprite sprite, int numberOfSquares, sf::RenderWindow *App);
+	void setSprite(sf::Sprite sprite, int numberOfSquares);
 	sf::Sprite getSprite();
 
 	void pollEvent(sf::Event *event);
 	void logic();
-	void render();
+	void render(sf::RenderWindow *app);
 
 	void reset(int size=-1);
 	
@@ -26,7 +25,7 @@ class Snake{
 	int m_squareSize;
 	int m_prevSquareDirect;
 	sf::Vector2<float> startPosition;
-	sf::Rect m_appRect;
+	sf::Rect<float> m_appRect;
 	
 	
 	int m_direction;
