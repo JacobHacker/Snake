@@ -15,35 +15,40 @@ void directionSay(int dir){
 	}
 }
 
+Snake::Snake(sf::Sprite sprite, int numberOfSquares){
+	setSprite(sprite);
+	
+	m_speed = 2;
+	m_direction = DIRECT_DOWN;
+
+	reset(numberOfSquares);
+}
+
+void Snake::setSprite(sf::Sprite sprite){
+	m_sprite = sprite;
+	
+	m_squareSize = sprite.getTexture()->getSize().x;
+}
+
 void Snake::reset(int i){
 	int size;
-	if(i==-1){ 
+	if(i < 0){ 
 		size = 3;
 	}else{
 		size = i;
 	}
 	
-	m_squaresVector.erase (m_squaresVector.begin(),m_squaresVector.end());
-	
-	//   Place the squares off screen, so the head doesn't collide with them
-	// in the beginning. Set the head to the proper start position
-	for(int i=0; i<size; i++){
-		m_squaresVector.push_back( sf::Vector2<float>(-m_squareSize, -m_squareSize) );
-	}
-	m_squaresVector[0].x = m_squaresVector[0].y = 320;
-}
 
-void Snake::setSprite(sf::Sprite sprite, int numberOfSquares){
-	m_sprite = sprite;
 	
-	m_speed = 2;
-	m_squareSize = sprite.getTexture()->getSize().x;
+	m_squaresVector.resize(size, {-m_squareSize, -m_squareSize});
+
 	
 	
-	reset(numberOfSquares);
-	
-	m_direction = DIRECT_DOWN;
-	m_clock.restart();
+	// Reset snake node positions up to the resize
+	for(int i=0; i<size; ++i){
+		m_squaresVector[i] = {-m_squareSize, -m_squareSize};
+	}
+	m_squaresVector[0] = {320, 320};
 }
 
 sf::Sprite Snake::getSprite(){
@@ -51,7 +56,6 @@ sf::Sprite Snake::getSprite(){
 }
 
 void Snake::pollEvent(sf::Event *event){
-	// check key presses
 	// prevSquareDirect used to prevent the snake from turning back on itself
 	if( event->type == sf::Event::KeyPressed){
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) 
@@ -89,30 +93,24 @@ void Snake::logic(){
 		}
 	
 		//shift all parts forward
-		for(int i=1; i<m_squaresVector.size(); i++){
+		for(uint i=1; i<m_squaresVector.size(); i++){
 			sf::Vector2<float> tmp( m_squaresVector[i] );
 			m_squaresVector[i] = prev;
 			prev = tmp;
 		}
 	}
 		
-	//check for collisions upon itself
+	// Check for collisions with itself
 	for(size_t i=1; i<m_squaresVector.size(); ++i){
 		if(m_squaresVector[0] == m_squaresVector[i]){
 			reset();
 		}
 	}
-	
-	/*if(){
-	
-	}*/
 }
 
 void Snake::render(sf::RenderWindow *app){
-	for(int i=0; i<m_squaresVector.size(); i++){
+	for(uint i=0; i<m_squaresVector.size(); i++){
 		m_sprite.setPosition( m_squaresVector[i] );
 		app->draw(m_sprite);
 	}
-	
 }
-

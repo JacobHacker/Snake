@@ -21,28 +21,25 @@ int main(){
 	
 	// Mighty snake warrior
 	sf::Sprite snakeSprite(snakeTex);
-
-	Snake snakeWarrior;
-	snakeWarrior.setSprite(snakeSprite, 10);
+	Snake snake(snakeSprite, 10);
 	
-	while( App.isOpen() ){
-		//event polling
+	while(App.isOpen()){
 		sf::Event event;
 		while( App.pollEvent(event) ){
 			if(event.type == sf::Event::Closed){
 				App.close();
 			}
 			
-			snakeWarrior.pollEvent(&event);
+			snake.pollEvent(&event);
 		}
 		
-		//logic
-		snakeWarrior.logic();
+		// Logic
+		snake.logic();
 		
-		//render
+		// Render
 		App.clear( sf::Color(255, 255, 255) );
-		map.render(&App);
-		snakeWarrior.render(&App);
+		//map.render(&App);
+		snake.render(&App);
 		
 		App.display();
 	}
