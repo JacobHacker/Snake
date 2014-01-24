@@ -11,9 +11,13 @@ const int DIRECT_RIGHT = 3;
 
 class Snake{
 	public:
-		Snake(const sf::Texture &tex, int numberOfSquares);
+		Snake();
+		
 		void createSprite(const sf::Texture &sprite);
 		sf::Sprite getSprite();
+
+		void setSpeed(int speed);
+		int getSpeed();
 
 		void pollEvent(sf::Event *event);
 		void logic();

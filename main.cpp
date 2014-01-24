@@ -20,8 +20,11 @@ int main(){
 	}
 	
 	// Mighty snake warrior
-	Snake snake(snakeTex, 10);
-	
+	Snake snake;
+	snake.createSprite(snakeTex);
+	snake.reset(10);
+	snake.setSpeed(5);
+
 	while(App.isOpen()){
 		sf::Event event;
 		while( App.pollEvent(event) ){
