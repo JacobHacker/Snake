@@ -20,8 +20,7 @@ int main(){
 	}
 	
 	// Mighty snake warrior
-	sf::Sprite snakeSprite(snakeTex);
-	Snake snake(snakeSprite, 10);
+	Snake snake(snakeTex, 10);
 	
 	while(App.isOpen()){
 		sf::Event event;
