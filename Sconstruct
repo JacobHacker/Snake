@@ -2,9 +2,18 @@ target = 'snake'
 cc = 'g++'
 ccflags = '-Wall -std=c++11'
 
-srcs = ['main.cpp', 'snake.cpp', 'tile.cpp', 'food.cpp', 'map.cpp', 'spriteSheet.cpp']
-libs = ['sfml-system', 'sfml-graphics', 'sfml-window']
-
+srcs = [
+	'main.cpp',
+	'snake.cpp',
+	'tile.cpp',
+	'food.cpp',
+	'map.cpp',
+	'spriteSheet.cpp',
+]
+libs = [
+	'sfml-system',
+	'sfml-graphics',
+	'sfml-window',
+]
 
 Program(target, srcs, LIBS = libs, CXX=cc, CCFLAGS=ccflags)
-
