@@ -15,8 +15,8 @@ void directionSay(int dir){
 	}
 }
 
-Snake::Snake(sf::Sprite sprite, int numberOfSquares){
-	setSprite(sprite);
+Snake::Snake(const sf::Texture &tex, int numberOfSquares){
+	createSprite(tex);
 	
 	m_speed = 2;
 	m_direction = DIRECT_DOWN;
@@ -24,10 +24,10 @@ Snake::Snake(sf::Sprite sprite, int numberOfSquares){
 	reset(numberOfSquares);
 }
 
-void Snake::setSprite(sf::Sprite sprite){
-	m_sprite = sprite;
+void Snake::createSprite(const sf::Texture &tex){
+	m_sprite.setTexture(tex);
 	
-	m_squareSize = sprite.getTexture()->getSize().x;
+	m_squareSize = tex.getSize().x;
 }
 
 void Snake::reset(int i){
