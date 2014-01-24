@@ -38,14 +38,11 @@ void Snake::reset(int i){
 		size = i;
 	}
 	
-
-	
+	int oldSize = m_squaresVector.size();
 	m_squaresVector.resize(size, {-m_squareSize, -m_squareSize});
-
-	
 	
 	// Reset snake node positions up to the resize
-	for(int i=0; i<size; ++i){
+	for(int i=0; i<oldSize; ++i){
 		m_squaresVector[i] = {-m_squareSize, -m_squareSize};
 	}
 	m_squaresVector[0] = {320, 320};

@@ -10,6 +10,7 @@ srcs = [
 	'map.cpp',
 	'spriteSheet.cpp',
 ]
+
 libs = [
 	'sfml-system',
 	'sfml-graphics',
