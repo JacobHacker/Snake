@@ -15,9 +15,12 @@ class Snake{
 		
 		void createSprite(const sf::Texture &sprite);
 		sf::Sprite getSprite();
+		void setScale(sf::Vector2f scale);
 
 		void setSpeed(int speed);
 		int getSpeed();
+
+		void setSquareSize(int size);
 
 		void pollEvent(sf::Event *event);
 		void logic();

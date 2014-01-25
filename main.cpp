@@ -10,17 +10,27 @@
 
 #define DEBUG_WINDOW = true;
 
+constexpr float pixelToScale(float imgSize, const int &size){
+	return (1/imgSize)*size;
+}
+
+const int TILE_SIZE = 16;
+
 int main(){
 	sf::RenderWindow App(sf::VideoMode(800, 600, 32), "Snake");
 	App.setFramerateLimit(30);
 	
 	sf::Texture snakeTex;
 	if( !snakeTex.loadFromFile("img/Aqua.png") ){
-		std::cout << "Failed to load snake image file\n";
+		std::cerr << "Failed to load snake image file\n";
+		return -1;
 	}
 	
 	// Mighty snake warrior
 	Snake snake;
+	const float s = pixelToScale(snakeTex.getSize().x, TILE_SIZE);
+	snake.setSquareSize(TILE_SIZE);
+	snake.setScale({s,s});
 	snake.createSprite(snakeTex);
 	snake.reset(10);
 	snake.setSpeed(5);
