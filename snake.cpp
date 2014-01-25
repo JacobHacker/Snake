@@ -22,7 +22,7 @@ Snake::Snake(){
 void Snake::createSprite(const sf::Texture &tex){
 	m_sprite.setTexture(tex);
 	
-	m_squareSize = tex.getSize().x;
+	//m_squareSize = tex.getSize().x;
 }
 
 void Snake::reset(int i){
@@ -49,12 +49,20 @@ sf::Sprite Snake::getSprite(){
 	return m_sprite;
 }
 
+void Snake::setScale(sf::Vector2f scale){
+	m_sprite.setScale(scale);
+}
+
 void Snake::setSpeed(int speed){
 	m_speed = speed;
 }
 
 int Snake::getSpeed(){
 	return m_speed;
+}
+
+void Snake::setSquareSize(int size){
+	m_squareSize = size;
 }
 
 void Snake::pollEvent(sf::Event *event){
@@ -77,13 +85,11 @@ void Snake::pollEvent(sf::Event *event){
 }
 
 void Snake::logic(){
-	//log the previous location of the head before moving
-	sf::Vector2<float> prev(m_squaresVector[0]);
-	
 	if( m_clock.getElapsedTime().asSeconds()*60 > (60/m_speed) ){
 		m_prevSquareDirect = m_direction;
 		m_clock.restart();
 		
+		sf::Vector2<float> prev(m_squaresVector[0]);
 		if(m_direction == DIRECT_UP){
 			m_squaresVector[0].y -= m_squareSize;
 		}else if(m_direction == DIRECT_DOWN){

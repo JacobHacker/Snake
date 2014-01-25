@@ -4,6 +4,8 @@
 #include <vector>
 #include <cstdint>
 
+class Vector2i;
+
 enum class FoodType{
 	NULL,
 	NORMAL,
@@ -11,17 +13,23 @@ enum class FoodType{
 };
 
 struct Food{
-	int x, y;
+	sf::Vector2i pos;
 	FoodType foodType;
 	uint64_t creationTime;
 };
 
 class FoodManager{
 	public:
-		size_t size(){return m_foodList.size();} const;
-		int &operator[](int i);
+		FoodManager();
+		std::size_t size(){return m_foodList.size();}
+		Food &operator[](int i);
+
+		void CreateFood(const Vector2i &pos, FoodType ft);
+		void CreateRandomFood();
+
 	private:
 		std::vector<Food> m_foodList;
+		int m_badFoodPerc;
 };
 
 #endif /*FOOD_H*/
