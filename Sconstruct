@@ -3,12 +3,12 @@ cc = 'g++'
 ccflags = '-Wall -std=c++11'
 
 srcs = [
-	'main.cpp',
-	'snake.cpp',
-	'tile.cpp',
-	'food.cpp',
-	'map.cpp',
-	'spriteSheet.cpp',
+	'src/main.cpp',
+	'src/snake.cpp',
+	'src/tile.cpp',
+	'src/food.cpp',
+	'src/map.cpp',
+	'src/spriteSheet.cpp',
 ]
 
 libs = [

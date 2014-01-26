@@ -21,10 +21,11 @@ int main(){
 	App.setFramerateLimit(30);
 	
 	sf::Texture snakeTex;
-	if( !snakeTex.loadFromFile("img/Aqua.png") ){
+	if( !snakeTex.loadFromFile("img/Retro.png") ){
 		std::cerr << "Failed to load snake image file\n";
 		return -1;
 	}
+	snakeTex.setSmooth(false);
 	
 	// Mighty snake warrior
 	Snake snake;

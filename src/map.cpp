@@ -23,7 +23,7 @@ const int MAP_TILE_BOTTOMCENTER = 11;
 const int MAP_TILE_BOTTOMRIGHT = 12;
 
 void Map::updateTiles(){
-	for(int i=0; i<tiles.size(); ++i){
+	for(uint i=0; i<tiles.size(); ++i){
 		// check tile above current tile
 		//if( tiles[i-m_width].get ==  )
 		// top edge
@@ -59,7 +59,7 @@ bool Map::openFile( std::string filename ){
 		if(lineNum == 0){
 			std::string curNum;
 			
-			for(int i=0; i<tmp.size(); i++){
+			for(uint i=0; i<tmp.size(); ++i){
 				if(tmp[i] == ','){
 					m_width = boost::lexical_cast<int>(curNum);
 					curNum = "";
@@ -74,7 +74,7 @@ bool Map::openFile( std::string filename ){
 			std::string curNum;
 			int x=0, y=0;//number between commas
 			
-			for(int i=0; i<tmp.size(); i++){
+			for(uint i=0; i<tmp.size(); ++i){
 				if(tmp[i] == ','){
 					int tileNum = boost::lexical_cast<int>(curNum);
 					
@@ -100,10 +100,11 @@ bool Map::openFile( std::string filename ){
 	}
 	
 	updateTiles();
+	return true;
 }
 
 void Map::render(sf::RenderWindow *App){
-	for(int i=0; i<tiles.size(); ++i){
+	for(uint i=0; i<tiles.size(); ++i){
 		App->draw(tiles[i].getSprite());
 	}
 	
