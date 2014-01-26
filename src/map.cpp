@@ -1,5 +1,6 @@
 #include <fstream>
 #include <iostream>
+#include <string>
 
 #include <SFML/Graphics.hpp>
 #include <boost/lexical_cast.hpp>
@@ -49,35 +50,39 @@ Map::Map(sf::Sprite mapTiles) : m_spriteSheet(mapTiles, TILESIZE){
 bool Map::openFile( std::string filename ){
 	std::ifstream iFile( filename.c_str() );
 	
-	std::string mapData;
+	//std::string mapData;
 	
-	std::string tmp;
-	int lineNum = 0; //parse map file
 	while( iFile.good() ){
+		std::string tmp;
+		int lineNum = 0; //parse map file
+		
+		// First line is the width, height of the map
 		iFile >> tmp;
-		//first line is the width,height
 		if(lineNum == 0){
 			std::string curNum;
 			
 			for(uint i=0; i<tmp.size(); ++i){
 				if(tmp[i] == ','){
-					m_width = boost::lexical_cast<int>(curNum);
+					//m_width = boost::lexical_cast<int>(curNum);
+					m_width = std::strtoi(curNum);
 					curNum = "";
-					//hop over the comma
+					// Hop over the comma
 					i++;
 				}
 					curNum += tmp[i];
 			}
 			//whats left from the above loop is the height
-			m_height = boost::lexical_cast<int>(curNum);
+			//m_height = boost::lexical_cast<int>(curNum);
+			m_height = std::strtoi(curNum);
 		}else if(lineNum == 1){ //map data should be on line2 or beyond;
 			std::string curNum;
 			int x=0, y=0;//number between commas
 			
 			for(uint i=0; i<tmp.size(); ++i){
 				if(tmp[i] == ','){
-					int tileNum = boost::lexical_cast<int>(curNum);
-					
+					//int tileNum = boost::lexical_cast<int>(curNum);
+					int tileNum = std::strtoi(curNum);
+
 					//move tile to proper position
 					m_tileSheet[tileNum].setPosition(x, y);
 					tiles.push_back( m_tileSheet[1] );
