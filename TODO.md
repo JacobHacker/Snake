@@ -9,3 +9,9 @@ v0.1
 * Food generation
 * Bad food
 * Score keeping
+
+v0.2
+----
+* Bottom bar
+* Start Menu
+* High scores
