@@ -16,7 +16,8 @@ void directionSay(int dir){
 	}
 }
 
-Snake::Snake(){
+Snake::Snake(FoodManager *fm)
+	: m_foodManager(fm){
 
 }
 

@@ -5,11 +5,14 @@
 #include <cstdint>
 
 class Vector2i;
+class sf::RenderWindow;
+class sf::Time;
+class sf::Clock;
 
 enum class FoodType{
-	NULL,
-	NORMAL,
-	BAD
+	Null,
+	Normal,
+	Bad
 };
 
 struct Food{
@@ -24,12 +27,23 @@ class FoodManager{
 		std::size_t size(){return m_foodList.size();}
 		Food &operator[](int i);
 
-		void CreateFood(const Vector2i &pos, FoodType ft);
-		void CreateRandomFood();
+		void setBadFoodPerc(int perc);
+
+		void setFoodGenTime(sf::Time time);
+
+		void createFood(const Vector2i &pos, FoodType ft);
+		void createRandomFood();
+
+		void logic();
+		void render(sf::RenderWindow *app);
 
 	private:
 		std::vector<Food> m_foodList;
 		int m_badFoodPerc;
+		sf::Time m_foodGenTime;
+		sf::Clock m_foodGenClock;
+
+		sf::RenderWindow *m_app;
 };
 
 #endif /*FOOD_H*/

@@ -9,9 +9,11 @@ const int DIRECT_DOWN = 1;
 const int DIRECT_LEFT = 2;
 const int DIRECT_RIGHT = 3;
 
+class FoodManager;
+
 class Snake{
 	public:
-		Snake();
+		Snake(FoodManager *fm);
 		
 		void createSprite(const sf::Texture &sprite);
 		sf::Sprite getSprite();
@@ -32,15 +34,15 @@ class Snake{
 		int m_speed;
 		float m_squareSize;
 		int m_prevSquareDirect;
-		sf::Vector2<float> startPosition;
+		sf::Vector2f startPosition;
 		sf::Rect<float> m_appRect;
-		
-		
 		int m_direction;
+
 		sf::Sprite m_sprite;
 		std::vector< sf::Vector2<float> > m_squaresVector;
-		
 		sf::Clock m_clock;
+
+		FoodManager *m_foodManager;
 };
 
 #endif

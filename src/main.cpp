@@ -7,6 +7,7 @@
 #include "map.h"
 #include "tile.h"
 #include "snake.h"
+#include "food.h"
 
 #define DEBUG_WINDOW = true;
 
@@ -26,11 +27,14 @@ int main(){
 	}
 	snakeTex.setSmooth(false);
 	
+	FoodManager foodManager;
+	foodManager.setBadFoodPerc(10);
+
 	// Mighty snake warrior
-	Snake snake;
+	Snake snake(&foodManager);
 	const float s = pixelToScale(snakeTex.getSize().x, TILE_SIZE);
-	snake.setSquareSize(TILE_SIZE);
 	snake.setScale({s,s});
+	snake.setSquareSize(TILE_SIZE);
 	snake.createSprite(snakeTex);
 	snake.reset(10);
 	snake.setSpeed(5);
@@ -46,11 +50,13 @@ int main(){
 		}
 		
 		// Logic
+		foodManager.logic();
 		snake.logic();
 		
 		// Render
 		App.clear( sf::Color(255, 255, 255) );
 		//map.render(&App);
+		foodManager.render(&App);
 		snake.render(&App);
 		
 		App.display();
