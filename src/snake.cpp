@@ -1,7 +1,8 @@
-#include "snake.h"
-
 #include <iostream>
 #include <SFML/Window.hpp>
+
+#include "snake.h"
+#include "typedefs.h"
 
 void directionSay(int dir){
 	if(dir == DIRECT_UP){

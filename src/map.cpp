@@ -3,10 +3,32 @@
 #include <string>
 
 #include <SFML/Graphics.hpp>
-#include <boost/lexical_cast.hpp>
+//#include <boost/lexical_cast.hpp>
 
 #include "map.h"
 #include "spriteSheet.h"
+#include "typedefs.h"
+
+// Could not get stoi working on windows, quick fix
+namespace temp_fix
+{
+    int stoi( const std::string& str, std::size_t* pos = 0, int base = 10 )
+    {
+        const char* begin = str.c_str() ;
+        char* end = nullptr ;
+        long value = std::strtol( begin, &end, base ) ;
+
+        if( errno == ERANGE || value > std::numeric_limits<int>::max() )
+            throw std::out_of_range( "stoi: out ofrange" ) ;
+
+        if( end == str.c_str() )
+            throw std::invalid_argument( "stoi: invalid argument" ) ;
+
+        if(pos) *pos = end - begin ;
+
+        return value ;
+    }
+}
 
 const int TILESIZE = 64;
 
@@ -64,7 +86,7 @@ bool Map::openFile( std::string filename ){
 			for(uint i=0; i<tmp.size(); ++i){
 				if(tmp[i] == ','){
 					//m_width = boost::lexical_cast<int>(curNum);
-					m_width = std::strtoi(curNum);
+					m_width = temp_fix::stoi(curNum);
 					curNum = "";
 					// Hop over the comma
 					i++;
@@ -73,7 +95,7 @@ bool Map::openFile( std::string filename ){
 			}
 			//whats left from the above loop is the height
 			//m_height = boost::lexical_cast<int>(curNum);
-			m_height = std::strtoi(curNum);
+			m_height = temp_fix::stoi(curNum);
 		}else if(lineNum == 1){ //map data should be on line2 or beyond;
 			std::string curNum;
 			int x=0, y=0;//number between commas
@@ -81,7 +103,7 @@ bool Map::openFile( std::string filename ){
 			for(uint i=0; i<tmp.size(); ++i){
 				if(tmp[i] == ','){
 					//int tileNum = boost::lexical_cast<int>(curNum);
-					int tileNum = std::strtoi(curNum);
+					int tileNum = temp_fix::stoi(curNum);
 
 					//move tile to proper position
 					m_tileSheet[tileNum].setPosition(x, y);
