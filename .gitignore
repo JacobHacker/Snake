@@ -1,1 +1,11 @@
+# Temp files
 *~
+
+# Scons
+.sconsign.dblite
+
+# Sublime text
+*.sublime-workspace
+
+*.o
+*.exe
