@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <cstdint>
+#include <random>
 
 class Vector2i;
 class sf::RenderWindow;
@@ -40,6 +41,8 @@ class FoodManager{
 	private:
 		std::vector<Food> m_foodList;
 		int m_badFoodPerc;
+		std::mt19937 m_rng;
+
 		sf::Time m_foodGenTime;
 		sf::Clock m_foodGenClock;
 

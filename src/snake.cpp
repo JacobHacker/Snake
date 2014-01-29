@@ -119,8 +119,12 @@ void Snake::logic(){
 }
 
 void Snake::render(sf::RenderWindow *app){
-	for(uint i=0; i<m_squaresVector.size(); i++){
-		m_sprite.setPosition( m_squaresVector[i] );
+	for(auto &it: m_squaresVector){
+		m_sprite.setPosition( it );
 		app->draw(m_sprite);
 	}
+
+	/*for(auto &it: m_snakeNodePos){
+		m_world.drawTile(m_sprite, it);
+	}*/
 }

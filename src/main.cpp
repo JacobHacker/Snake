@@ -29,6 +29,7 @@ int main(){
 	
 	FoodManager foodManager;
 	foodManager.setBadFoodPerc(10);
+	foodManager.setFoodGenTime(sf::seconds(15));
 
 	// Mighty snake warrior
 	Snake snake(&foodManager);
