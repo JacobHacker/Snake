@@ -17,4 +17,10 @@
 		"tab_size": 4,
 		"detect_indentation": false,
 	},
+	"build_systems":
+	{
+		"name": "Scons build",
+		"shell_cmd": "scons && snake",
+		"working_dir": "${project_path:${folder:${file_path}}}",
+	}
 }
