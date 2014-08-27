@@ -12,45 +12,45 @@
 
 #define DEBUG_WINDOW = true;
 
-constexpr float pixelToScale(float imgSize, const int &size){
-	return (1/imgSize)*size;
+constexpr float pixelToScale( float imgSize, const int &size ){
+	return ( 1 / imgSize ) * size;
 }
 
 const int TILE_SIZE = 16;
 
 int main(){
-	sf::RenderWindow App(sf::VideoMode(800, 600, 32), "Snake");
-	App.setFramerateLimit(30);
+	sf::RenderWindow App( sf::VideoMode( 800, 600, 32 ), "Snake" );
+	App.setFramerateLimit( 30 );
 	
 	sf::Texture snakeTex;
-	if( !snakeTex.loadFromFile("img/Silver.png") ){
+	if( !snakeTex.loadFromFile( "img/Silver.png" ) ){
 		return -1;
 	}
-	snakeTex.setSmooth(false);
+	snakeTex.setSmooth( false );
 	
 	World world(&m_app);
 
 	FoodManager foodManager;
-	foodManager.setBadFoodPerc(10);
-	foodManager.setFoodGenTime(sf::seconds(15));
+	foodManager.setBadFoodPerc( 10 );
+	foodManager.setFoodGenTime( sf::seconds( 15 ) );
 
 	// Mighty snake warrior
 	Snake snake(&foodManager);
-	const float s = pixelToScale(snakeTex.getSize().x, TILE_SIZE);
-	snake.setScale({s,s});
-	snake.setSquareSize(TILE_SIZE);
-	snake.createSprite(snakeTex);
-	snake.reset(10);
-	snake.setSpeed(5);
+	const float s = pixelToScale( snakeTex.getSize().x, TILE_SIZE );
+	snake.setScale( {s, s} );
+	snake.setSquareSize( TILE_SIZE );
+	snake.createSprite( snakeTex );
+	snake.reset( 10 );
+	snake.setSpeed( 5 );
 
-	while(App.isOpen()){
+	while( App.isOpen() ){
 		sf::Event event;
 		while( App.pollEvent(event) ){
-			if(event.type == sf::Event::Closed){
+			if( event.type == sf::Event::Closed ){
 				App.close();
 			}
 			
-			snake.pollEvent(&event);
+			snake.pollEvent( &event );
 		}
 		
 		// Logic
@@ -59,9 +59,10 @@ int main(){
 		
 		// Render
 		App.clear( sf::Color(255, 255, 255) );
+<<<<<<< HEAD
 		
-		foodManager.render(&App);
-		snake.render(&App);
+		foodManager.render( &App );
+		snake.render( &App );
 		world.render();
 
 		App.display();
