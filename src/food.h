@@ -5,7 +5,6 @@
 #include <cstdint>
 #include <random>
 
-class Vector2i;
 class sf::RenderWindow;
 class sf::Time;
 class sf::Clock;
@@ -32,7 +31,7 @@ class FoodManager{
 
 		void setFoodGenTime(sf::Time time);
 
-		void createFood(const Vector2i &pos, FoodType ft);
+		void createFood(const sf::Vector2i &pos, FoodType ft);
 		void createRandomFood();
 
 		void logic();

@@ -8,6 +8,7 @@
 #include "tile.h"
 #include "snake.h"
 #include "food.h"
+#include "world.h"
 
 #define DEBUG_WINDOW = true;
 
@@ -27,6 +28,8 @@ int main(){
 	}
 	snakeTex.setSmooth(false);
 	
+	World world(&m_app);
+
 	FoodManager foodManager;
 	foodManager.setBadFoodPerc(10);
 	foodManager.setFoodGenTime(sf::seconds(15));
@@ -56,10 +59,11 @@ int main(){
 		
 		// Render
 		App.clear( sf::Color(255, 255, 255) );
-		//map.render(&App);
+		
 		foodManager.render(&App);
 		snake.render(&App);
-		
+		world.render();
+
 		App.display();
 	}
 	return 0;

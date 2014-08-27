@@ -9,6 +9,7 @@ srcs = [
 	'src/food.cpp',
 	'src/map.cpp',
 	'src/spriteSheet.cpp',
+	'src/world.cpp',
 ]
 
 libs = [
