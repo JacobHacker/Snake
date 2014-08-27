@@ -1,5 +1,6 @@
 import os
-env = Environment(tools = ['gcc', 'g++', 'gnulink'], ENV = {'PATH' : os.environ['PATH']})
+env = Environment(tools = ['gcc', 'g++', 'gnulink'],
+				  ENV = {'PATH' : os.environ['PATH']})
 
 target = 'snake'
 cc = 'g++'

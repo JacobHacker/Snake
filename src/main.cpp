@@ -58,9 +58,8 @@ int main(){
 		snake.logic();
 		
 		// Render
-		App.clear( sf::Color(255, 255, 255) );
-<<<<<<< HEAD
-		
+		App.clear( sf::Color( 255, 255, 255 ) );
+
 		foodManager.render( &App );
 		snake.render( &App );
 		world.render();
