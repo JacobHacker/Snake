@@ -1,3 +1,6 @@
+import os
+env = Environment(tools = ['gcc', 'g++', 'gnulink'], ENV = {'PATH' : os.environ['PATH']})
+
 target = 'snake'
 cc = 'g++'
 ccflags = '-Wall -std=c++11'
@@ -17,4 +20,4 @@ libs = [
 	'sfml-window',
 ]
 
-Program(target, srcs, LIBS = libs, CXX=cc, CCFLAGS=ccflags)
+env.Program( target, srcs, LIBS = libs, CXX = cc, CCFLAGS = ccflags )
