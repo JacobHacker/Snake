@@ -1,4 +1,7 @@
+#include <SFML/Graphics.hpp>
+
 #include "world.h"
+#include "typedefs.h"
 
 World::World(sf::RenderWindow *app){
 	m_app = app;
@@ -12,6 +15,6 @@ void World::removeSprite(Layer layer, uint index){
 
 }
 
-World::render(){
+void World::render(){
 
 }

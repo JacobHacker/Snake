@@ -25,7 +25,7 @@ void FoodManager::setFoodGenTime(sf::Time time){
 	m_foodGenTime = time;
 }
 
-void FoodManager::createFood(const Vector2i &pos, FoodType ft){
+void FoodManager::createFood(const sf::Vector2i &pos, FoodType ft){
 
 }
 
